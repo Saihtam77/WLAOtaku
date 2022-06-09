@@ -21,9 +21,9 @@ return new class extends Migration
             
             $table->string("nom");
             $table->string("auteur");
-            $table->string("synopsis");
+            $table->text("synopsis");
             $table->string("date_diffusion");
-            $table->string("image");
+            $table->string("images");
 
             $table->foreignIdFor(seasonals::class)
                 ->references("id")

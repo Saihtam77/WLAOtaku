@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- carousel --}}
-    <section class="d-flex justify-content-center">
+    <section class="d-flex justify-content-center mt-5">
         <div id="carouselExampleDark" class="carousel carousel-dark slide container-fluid container-md"
             data-bs-ride="carousel">
             {{-- indicator --}}
@@ -18,7 +18,7 @@
             <div class="carousel-inner w-100">
                 {{-- Slide de depart --}}
                 <div class="carousel-item position-relative active w-100" data-bs-interval="10000">
-                    <div style="height:50vh; background-color:#fad867"
+                    <div style="height:50vh; background-color:#868686"
                         class="d-flex justify-content-center align-items-center">
                         <h1>EVENEMENTS</h1>
                     </div>
@@ -31,7 +31,7 @@
                 @foreach ($evenements as $evenement)
                     <div class="carousel-item position-relative w-100" data-bs-interval="10000">
                         <div style="height:50vh ">
-                            <img src="/storage/Evenements/photos/{{ $evenement->images }}" class="d-block w-100 h-100" alt="...">
+                            <img src="/storage/Evenements/photos/{{ $evenement->images }}" class="d-block w-100 h-100 opacity-75" alt="...">
                         </div>
                         <div class="position-absolute hvr-fade w-100 d-flex flex-column align-items-center p-5 bottom-0"
                             style="z-index:4">
@@ -57,7 +57,7 @@
     </section>
 
     {{-- grid slider des episode --}}
-    <section class="container postion-relative mt-3" style="overflow-x: auto; overflow-y:hidden">
+    <section class="container-fluid postion-relative mt-3" style="overflow-x: auto; overflow-y:hidden; color:white">
 
         <div class="d-flex justify-content-md-center align-items-center">
             <div class="d-flex flex-column col-4 col-md-2 me-3">
@@ -91,7 +91,7 @@
 
     </section>
     {{-- Seasonal --}}
-    <section class=" d-flex justify-content-md-center container-fluid mt-3" style="overflow-x: auto">
+    <section class=" d-flex justify-content-md-center container-fluid mt-3 text-dark" style="overflow-x: auto">
 
         <div class="card col-6 col-md-4 me-3" style="width: 18rem;">
             <img src="..." class="card-img-top" class="w-100" style="height: 20vh" alt="...">
@@ -135,7 +135,7 @@
 
     </section>
     {{-- Article --}}
-    <section class="container-fluid d-flex mt-5" style="overflow-x:auto; overflow-y:hidden">
+    <section class="container-fluid d-flex mt-5 text-dark" style="overflow-x:auto; overflow-y:hidden">
 
         @foreach ($articles as $article)
             <div class="col-6 position-relative me-3">

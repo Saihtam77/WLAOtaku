@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="container d-flex flex-column">
-        {!! Form::open(["action"=>"Blog\ArticlesController@store","methode"=>"post","enctype"=>"multipart/form-data","class"=>"d-flex flex-column"]) !!}
+        {!! Form::open(["action"=>"Blog\ArticlesController@store","method"=>"post","enctype"=>"multipart/form-data","class"=>"d-flex flex-column"]) !!}
             
             <div class="d-flex flex-column form-group">
                 {!! Form::label("titre","Titre") !!}

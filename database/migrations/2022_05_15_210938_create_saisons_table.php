@@ -14,15 +14,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('episodes', function (Blueprint $table) {
+        Schema::create('saisons', function (Blueprint $table) {
+
             $table->id();
             $table->timestamps();
-
-            $table->string("nom");
-            $table->string("video");
-
-            /* relation avec le tableau anime */
             
+            $table->string("nom");
+            $table->string("synopsis");
+            $table->string("images");
+
             $table->foreignIdFor(animes::class)
                 ->references("id")
                 ->on("animes")
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('episodes');
+        Schema::dropIfExists('saisons');
     }
 };

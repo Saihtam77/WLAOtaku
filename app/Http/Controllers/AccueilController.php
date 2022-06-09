@@ -20,13 +20,16 @@ class AccueilController extends Controller
 
         /* import des table concernant les animes */
         $seasonals=seasonals::OrderBy('created_at','desc')->limit(4)->get();
+        $animes=animes::OrderBy('created_at','desc')->get();
         $episodes=episodes::OrderBy('created_at','desc')->limit(15)->get();
 
         return view("pages.accueil",[
+            
             "evenements"=>$evenements,
             "articles"=>$articles,
-
+            
             "seasonals"=>$seasonals,
+            "animes"=>$animes,
             "episodes"=>$episodes
         ]);
         

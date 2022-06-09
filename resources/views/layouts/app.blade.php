@@ -17,10 +17,10 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased bg-light postion-relative">
+    <body class="font-sans antialiased postion-relative text-light" style="background-color: #262626">
 
         <!-- Page Heading -->
-        <header class="position-sticky top-0 container-fluid" style="z-index:5">
+        <header class="position-sticky top-0 container-fluid p-0" style="z-index:5">
             @include('partials.navigation')
         </header>
 

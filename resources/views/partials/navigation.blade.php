@@ -38,8 +38,8 @@
 @endguest
 
 @auth
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            
+    <nav class="navbar navbar-expand-lg navbar-dark container-fluid" style="background-color: #000814">
+                
         <div class="container-fluid">
 
             {{-- reseau sociaux --}}
@@ -61,8 +61,9 @@
 
                     <div class="d-flex flex-column flex-md-row">
                         <a class="nav-link" href="{{route("LesAnimes")}}">Liste des animes</a>
-                        <a class="nav-link" href="#">Article</a>
-                        <a class="nav-link" href="{{route("LesEvenements")}}">Evenements</a>
+                        <a class="nav-link" href="{{route("LesArticles")}}">Les articles</a>
+                        <a class="nav-link" href="{{route("LesEvenements")}}">Les evenements</a>
+                        <a class="nav-link" href="{{route("LesSeasonals")}}">Les Seasonals</a>
                     </div>
 
                     <div class="d-flex flex-column flex-md-row">

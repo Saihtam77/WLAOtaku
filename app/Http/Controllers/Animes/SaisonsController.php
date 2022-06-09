@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Animes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Animes\episodes;
+use App\Models\Animes\saisons;
 use Illuminate\Http\Request;
 
-class EpisodesController extends Controller
+class SaisonsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +16,7 @@ class EpisodesController extends Controller
      */
     public function index()
     {
+        //
     }
 
     /**
@@ -39,34 +41,37 @@ class EpisodesController extends Controller
         $this->validate($request, [
 
             "nom" => 'required',
+            "synopsis" => 'required',
+
             /* image not required */
-            "video"=>'image|nullable|max:1999'
+            "photo" => 'images|nullable|max:19999'
         ]);
 
         /*verification de l'import d'images*/
-        if ($request->hasFile("video")) {
-            $filenameWithExt = $request->file('video')->getClientOriginalName();
+        if ($request->hasFile("images")) {
+            $filenameWithExt = $request->file('images')->getClientOriginalName();
             /* recup le nom du fichier sans l'extension */
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             /* recup le l'extension du fichier */
-            $extension = $request->file('video')->getClientOriginalExtension();
+            $extension = $request->file('images')->getClientOriginalExtension();
             /* stockage de l'image */
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
 
-            $path = $request->file('video')->storeAs('Animes/Episodes/video', $fileNameToStore);
+            $path = $request->file('images')->storeAs('Animes/photos', $fileNameToStore);
         } else {
             $fileNameToStore = "noimage.jpg";
         }
         /* Exportation des nouvelles donnée dans la base de donnée */
-        $episodes = new episodes;
+        $saisons = new saisons;
 
-        $episodes->nom = $request->input('nom');
+        $saisons->nom = $request->input('nom');
+        $saisons->synopsis = $request->input('synopsis');
 
-        $episodes->saisons_id = $request->input('saisons_id');
-        $episodes->video = $fileNameToStore;
+        $saisons->animes_id = $request->input('animes_id');
+        $saisons->images= $fileNameToStore;
 
-        $episodes->save();
-        return redirect()->route("LesAnimes")->with('success', 'Nouvel episode ajouter');
+        $saisons->save();
+        return redirect()->route("LesAnimes")->with('success', 'Nouvel saison ajouter');
     }
 
     /**
@@ -77,11 +82,10 @@ class EpisodesController extends Controller
      */
     public function show($id)
     {
-        $episode=episodes::find($id);//les infos relatives a l'episode
-        $episodes=episodes::OrderBy("created_at")->where("saison_id","=",$id);//Les infos realtives a tout les episodes de la saison
-        
-        return view("pages.Animes.Episode",[
-            "episode"=>$episode,
+        $saison =saisons::find($id);
+        $episodes=episodes::OrderBy("nom","desc")->where("saisons_id","=",$id)->get();
+        return view("pages.Animes.LesEpisodes",[
+            "saison"=>$saison,
             "episodes"=>$episodes,
         ]);
     }
@@ -94,10 +98,8 @@ class EpisodesController extends Controller
      */
     public function edit($id)
     {
-        $episode=episodes::find($id);
-        return view("pages.Edit.editEpisode",[
-            "episode"=>$episode
-        ]);
+        $saison=saisons::find($id);
+        return view("pages.Edit.editSaisons")->with("saison",$saison);
     }
 
     /**
@@ -113,34 +115,37 @@ class EpisodesController extends Controller
         $this->validate($request, [
 
             "nom" => 'required',
+            "synopsis" => 'required',
+
             /* image not required */
-            "video"=>'image|nullable|max:1999'
+            "images"=>'image|nullable|max:1999'
         ]);
 
         /*verification de l'import d'images*/
-        if ($request->hasFile("video")) {
-            $filenameWithExt = $request->file('video')->getClientOriginalName();
+        if ($request->hasFile("images")) {
+            $filenameWithExt = $request->file('images')->getClientOriginalName();
             /* recup le nom du fichier sans l'extension */
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             /* recup le l'extension du fichier */
-            $extension = $request->file('video')->getClientOriginalExtension();
+            $extension = $request->file('images')->getClientOriginalExtension();
             /* stockage de l'image */
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
 
-            $path = $request->file('video')->storeAs('Animes/Episodes/video', $fileNameToStore);
+            $path = $request->file('images')->storeAs('Animes/photos', $fileNameToStore);
         } else {
             $fileNameToStore = "noimage.jpg";
         }
         /* Exportation des nouvelles donnée dans la base de donnée */
-        $episodes = episodes::find($id);
+        $saisons = saisons::find($id);
 
-        $episodes->nom = $request->input('nom');
+        $saisons->nom = $request->input('nom');
+        $saisons->synopsis = $request->input('synopsis');
 
-        $episodes->saisons_id = $request->input('saisons_id');
-        $episodes->video = $fileNameToStore;
+        $saisons->animes_id = $request->input('animes_id');
+        $saisons->images= $fileNameToStore;
 
-        $episodes->save();
-        return redirect()->route("LesAnimes")->with('success', 'Episode modifier');
+        $saisons->save();
+        return redirect()->route("LesAnimes")->with('success', 'Saison mise a jour');
     }
 
     /**
@@ -151,8 +156,8 @@ class EpisodesController extends Controller
      */
     public function destroy($id)
     {
-        $episode = episodes::find($id);
-        $episode->delete();
-        return redirect()->route("LesAnimes")->with('success', 'Episode supprimer');
+        $saisons = saisons::find($id);
+        $saisons->delete();
+        return redirect()->route("LesAnimes")->with('success', 'Saison supprimer');
     }
 }

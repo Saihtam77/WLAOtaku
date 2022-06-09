@@ -15,7 +15,8 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
+        $articles=articles::OrderBy("created_at","desc")->get();
+        return view("pages/Blog/LesArticles")->with("articles",$articles);
     }
 
     /**
@@ -42,11 +43,12 @@ class ArticlesController extends Controller
             "titre"=>'required',
             "presentation"=>'required',
             "contenu"=>'required',
+
             /* image not required */
-            "photo"=>'images|nullable|max:19999'
+            "images"=>'image|nullable|max:1999'
         ]);
 
-    /*verification de l'import d'images*/
+        /*verification de l'import d'images*/
         if ($request->hasFile("images")) {
             $filenameWithExt=$request->file('images')->getClientOriginalName();
             /* recup le nom du fichier sans l'extension */
@@ -60,7 +62,7 @@ class ArticlesController extends Controller
         }else{
             $fileNameToStore="noimage.jpg";
         }
-    /* Exportation des nouvelles donnée dans la base de donnée */
+        /* Exportation des nouvelles donnée dans la base de donnée */
         $article=new articles;
         $article->titre=$request->input('titre');
 
@@ -82,7 +84,8 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        //
+        $article=articles::find($id);
+        return view("pages.Blog.Article")->with("article",$article);
     }
 
     /**
@@ -93,7 +96,8 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article=articles::find($id);
+        return view("pages.Edit.editArticles")->with("article",$article);
     }
 
     /**
@@ -105,7 +109,41 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         /*Verification du remplissage des champs requis*/
+         $this->validate($request,[
+            
+            "titre"=>'required',
+            "presentation"=>'required',
+            "contenu"=>'required',
+            /* image not required */
+            "photo"=>'images|nullable|max:19999'
+        ]);
+
+        /*verification de l'import d'images*/
+        if ($request->hasFile("images")) {
+            $filenameWithExt=$request->file('images')->getClientOriginalName();
+            /* recup le nom du fichier sans l'extension */
+            $filename=pathinfo($filenameWithExt,PATHINFO_FILENAME);
+            /* recup le l'extension du fichier */
+            $extension=$request->file('images')->getClientOriginalExtension();
+            /* stockage de l'image */
+            $fileNameToStore=$filename.'_'.time().'.'.$extension;
+
+            $path= $request->file('images')->storeAs('Articles/photos',$fileNameToStore);
+        }else{
+            $fileNameToStore="noimage.jpg";
+        }
+        /* Exportation des nouvelles donnée dans la base de donnée */
+        $article=articles::find($id);
+        $article->titre=$request->input('titre');
+
+        $article->presentation=$request->input('presentation');
+        $article->contenu=$request->input('contenu');
+
+        $article->images=$fileNameToStore;
+
+        $article->save();
+        return redirect()->route("dashboard")->with('success', 'Article mise à jours');
     }
 
     /**
@@ -116,6 +154,8 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article=articles::find($id);
+        $article->delete();
+        return redirect()->route("accueil")->with('success', 'Articles supprimer');
     }
 }

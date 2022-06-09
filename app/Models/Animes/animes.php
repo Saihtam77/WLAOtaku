@@ -13,8 +13,8 @@ class animes extends Model
         return $this->belongsTo(seasonals::class);
     } 
     
-    public function episodes(){
-        return $this->hasMany(episodes::class);
+    public function saison(){
+        return $this->hasMany(saisons::class);
     }
 
     public function categories(){
