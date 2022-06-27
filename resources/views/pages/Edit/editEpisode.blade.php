@@ -13,8 +13,6 @@
             {!! Form::file('video', ['class' => 'form-control']) !!}
         </div>
 
-        {!! Form::hidden('saisons_id', $episode->saisons_id) !!}
-
         <div class="d-flex justify-content-center mt-3">
             {!! Form::submit('Ajouter', ['class' => 'btn btn-success col-6']) !!}
         </div>

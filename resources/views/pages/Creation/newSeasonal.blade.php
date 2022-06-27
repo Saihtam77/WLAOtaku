@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="container d-flex flex-column">
+    <section class="container d-flex flex-column justify-content-center min-vh-100">
         {!! Form::open(["action"=>"Animes\SeasonalsController@store","method"=>"post","enctype"=>"multipart/form-data","class"=>"d-flex flex-column text-light"]) !!}
             
             <div class="d-flex flex-column form-group">

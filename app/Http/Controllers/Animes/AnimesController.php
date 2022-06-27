@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Animes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Animes\animes;
-use App\Models\Animes\saisons;
+use App\Models\Animes\episodes;
 use Illuminate\Http\Request;
 
 class AnimesController extends Controller
@@ -27,6 +27,7 @@ class AnimesController extends Controller
      */
     public function create()
     {
+        return view("pages.Creation.nouveauxAnimes_HorsSeasonal");
     }
 
     /**
@@ -46,11 +47,11 @@ class AnimesController extends Controller
 
             "synopsis" => 'required',
 
-            /* image not required */
-            "images"=>'image|nullable|max:1999'
+            /* image required */
+            "images"=>'required|image|max:1999'
         ]);
 
-        /*verification de l'import d'images*/
+        /*Créee un identifiant unique pour l'images et la stocke*/
         if ($request->hasFile("images")) {
             $filenameWithExt = $request->file('images')->getClientOriginalName();
             /* recup le nom du fichier sans l'extension */
@@ -64,6 +65,7 @@ class AnimesController extends Controller
         } else {
             $fileNameToStore = "noimage.jpg";
         }
+
         /* Exportation des nouvelles donnée dans la base de donnée */
         $animes = new animes;
 
@@ -74,6 +76,7 @@ class AnimesController extends Controller
         $animes->synopsis = $request->input('synopsis');
 
         $animes->seasonals_id = $request->input('seasonals_id');
+        
         $animes->images = $fileNameToStore;
 
         $animes->save();
@@ -89,10 +92,10 @@ class AnimesController extends Controller
     public function show($id)
     {
         $anime = animes::find($id);
-        $saisons=saisons::OrderBy("created_at","desc")->where("animes_id","=",$id)->get();
+        $episodes=episodes::OrderBy("nom","desc")->Where("animes_id","=",$id)->get();
         return view("pages.Animes.Anime",[
-            "anime"=>$anime,
-            "saisons"=>$saisons
+                "anime"=>$anime,
+                "episodes"=>$episodes
         ]);
     }
 
@@ -123,11 +126,12 @@ class AnimesController extends Controller
             "nom" => 'required',
             "date_diffusion" => 'required',
             "auteur" => 'required',
+           
 
             "synopsis" => 'required',
 
             /* image not required */
-            "photo" => 'images|nullable|max:19999'
+            "photo" => 'images|max:19999'
         ]);
 
         /*verification de l'import d'images*/

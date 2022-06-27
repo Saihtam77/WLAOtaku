@@ -15,11 +15,11 @@ class AccueilController extends Controller
     public function index()
     {
         /* import des table concernant le blog */
-        $evenements=evenements::OrderBy('created_at','desc')->limit(5)->get();
-        $articles=articles::OrderBy('created_at','desc')->limit(5)->get();
+        $evenements=evenements::OrderBy('created_at','desc')->limit(3)->get();
+        $articles=articles::OrderBy('created_at','desc')->limit(7)->get();
 
         /* import des table concernant les animes */
-        $seasonals=seasonals::OrderBy('created_at','desc')->limit(4)->get();
+        $seasonals=seasonals::OrderBy('created_at','desc')->limit(1)->get();
         $animes=animes::OrderBy('created_at','desc')->get();
         $episodes=episodes::OrderBy('created_at','desc')->limit(15)->get();
 

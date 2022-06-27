@@ -12,12 +12,14 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/hover.css') }}">
+        @yield('style')
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased postion-relative text-light" style="background-color: #262626">
+    <body class="font-sans antialiased postion-relative min-vh-100" style="overflow-x: hidden">
 
         <!-- Page Heading -->
         <header class="position-sticky top-0 container-fluid p-0" style="z-index:5">

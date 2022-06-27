@@ -20,7 +20,8 @@
             {!! Form::textarea("synopsis","", ["class"=>"form-control","placeholder"=>"De quoi voulez vous parler ?"]) !!}
         </div>
 
-        <div class="d-flex justify-content-center mt-3">
+        <div class="d-flex flex-column mt-3">
+            {!! Form::label("images","Images") !!}
             {!! Form::file("images", ["class"=>"form-control"]) !!}
         </div>
 

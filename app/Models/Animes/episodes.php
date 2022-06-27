@@ -9,7 +9,7 @@ class episodes extends Model
 {
     use HasFactory;
 
-    public function saisons(){
-        return $this->belongsTo(saisons::class);
+    public function animes(){
+        return $this->belongsTo(animes::class);
     }
 }

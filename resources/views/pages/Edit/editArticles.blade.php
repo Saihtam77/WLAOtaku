@@ -11,7 +11,9 @@
 
             <div class="d-flex flex-column form-group">
                 {!! Form::label("presentation","Presentation") !!}
-                {!! Form::text("presentation",$article->presentation, ["class"=>"form-control","placeholder"=>"Rapide presentation"]) !!}
+                <textarea class="form-control" placeholder="Rapide presentation" name="presentation" id="presentation" cols="30" rows="3">
+                    {{$article->presentation}}
+                </textarea>
 
                 {!! Form::label("contenu","Contenu") !!}
                 {!! Form::textarea("contenu",$article->contenu, ["class"=>"form-control","placeholder"=>"Ecrivez ce dont vous voulez parler"]) !!}

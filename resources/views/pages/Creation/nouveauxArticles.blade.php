@@ -11,8 +11,8 @@
 
             <div class="d-flex flex-column form-group">
                 {!! Form::label("presentation","Presentation") !!}
-                {!! Form::text("presentation","", ["class"=>"form-control","placeholder"=>"Rapide presentation"]) !!}
-
+                {!! Form::textarea("presentation", "", ["class"=>"form-control","placeholder"=>"Rapide presentation de votre Article"]) !!}
+                
                 {!! Form::label("contenu","Redigez-ici") !!}
                 {!! Form::textarea("contenu","", ["class"=>"form-control","placeholder"=>"De quoi voulez vous parler ?"]) !!}
             </div>

@@ -24,8 +24,10 @@ return new class extends Migration
             $table->text("synopsis");
             $table->string("date_diffusion");
             $table->string("images");
+            
 
             $table->foreignIdFor(seasonals::class)
+                ->nullable()
                 ->references("id")
                 ->on("seasonals")
                 ->onDelete('cascade');

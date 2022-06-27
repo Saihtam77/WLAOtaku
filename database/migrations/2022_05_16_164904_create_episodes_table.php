@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Animes\saisons;
+use App\Models\Animes\animes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string("video");
 
             
-            $table->foreignIdFor(saisons::class)
+            $table->foreignIdFor(animes::class)
                 ->references("id")
-                ->on("saisons")
+                ->on("animes")
                 ->onDelete('cascade');
         });
     }

@@ -40,10 +40,10 @@ class EpisodesController extends Controller
 
             "nom" => 'required',
             /* image not required */
-            "video"=>'image|nullable|max:1999'
+            "video"=>'required|mimes:mp4'
         ]);
 
-        /*verification de l'import d'images*/
+        /*Import de la video dans les fichier de stockage*/
         if ($request->hasFile("video")) {
             $filenameWithExt = $request->file('video')->getClientOriginalName();
             /* recup le nom du fichier sans l'extension */
@@ -57,12 +57,14 @@ class EpisodesController extends Controller
         } else {
             $fileNameToStore = "noimage.jpg";
         }
+        
         /* Exportation des nouvelles donnée dans la base de donnée */
         $episodes = new episodes;
 
         $episodes->nom = $request->input('nom');
+        $episodes->animes_id = $request->input('animes_id');
 
-        $episodes->saisons_id = $request->input('saisons_id');
+
         $episodes->video = $fileNameToStore;
 
         $episodes->save();
@@ -114,7 +116,7 @@ class EpisodesController extends Controller
 
             "nom" => 'required',
             /* image not required */
-            "video"=>'image|nullable|max:1999'
+            "video"=>'required|mimes:mp4',
         ]);
 
         /*verification de l'import d'images*/
@@ -131,12 +133,14 @@ class EpisodesController extends Controller
         } else {
             $fileNameToStore = "noimage.jpg";
         }
+
         /* Exportation des nouvelles donnée dans la base de donnée */
         $episodes = episodes::find($id);
 
         $episodes->nom = $request->input('nom');
 
-        $episodes->saisons_id = $request->input('saisons_id');
+        $episodes->animes_id = $request->input('animes_id');
+
         $episodes->video = $fileNameToStore;
 
         $episodes->save();

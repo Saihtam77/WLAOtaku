@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->string("titre");
-            $table->text("presentation");
+            $table->string("presentation",500);
             $table->text("contenu");
 
             $table->string("images")->nullable();

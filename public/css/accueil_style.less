@@ -1,0 +1,103 @@
+/* css tool */
+.rotated_y{
+    transform:rotateY(180deg);
+}
+
+.x_scroll{
+    overflow-x: auto;
+}
+
+.shadow_box{
+    box-shadow: -12px 12px 2px 2px rgba(0, 0, 0, 0.5);
+}
+/* Evenement carousel */
+.carousel_img{
+    width: 100%;
+    height: 50vh;
+    background-color:#4da1ff;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.7;
+}
+.carousel_text{
+    position: absolute;
+    bottom: 0px;
+}
+
+/* Seasonal carousel */
+.seasonalCarousel_first_slide{
+    width: 100%;
+    height: 50vh;
+    background-color: antiquewhite;
+}
+.seasonalCarousel_img{
+    width: 100%;
+    height: 50vh;
+    background-color: antiquewhite;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.7;
+}
+
+.seasonalCarousel_text{
+    width: 100%;
+    top: 43%;
+    position: absolute;
+}
+
+
+
+/* Card style */
+.card_box{
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, 0.5);
+    .card_img{
+        height: 25vh;
+        background-color: antiquewhite;
+        position: relative;
+        background-position: center;
+        background-size: cover;
+    }
+
+}
+
+/* Article */
+.thumb_box{
+    height: 25vh;
+
+    .thumb_img{
+        background-color: antiquewhite;
+        position: relative;
+        background-position: center;
+        background-size: cover;
+    }
+}
+
+
+@media(max-width: 810px){
+
+    .seasonalCarousel_first_slide{
+        width: 100%;
+        height: 25vh;
+        background-color: antiquewhite;
+    }
+
+    .seasonalCarousel_img{
+        width: 100%;
+        height: 25vh;
+    }
+    
+    .thumb_box{
+        height: 15vh;
+
+        .thumb_img{
+            background-color: antiquewhite;
+            position: relative;
+            background-position: center;
+            background-size: cover;
+        }
+    }
+
+
+}

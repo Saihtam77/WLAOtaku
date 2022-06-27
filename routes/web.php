@@ -39,7 +39,6 @@ Route::resource("les_articles",ArticlesController::class);
 Route::resource("les_seasonals",SeasonalsController::class);
 Route::resource("les_animes",AnimesController::class);
 Route::resource("les_episodes",EpisodesController::class);
-Route::resource("les_saisons",SaisonsController::class);
 Route::resource("les_categories",CategoriesController::class);
 
 /* route pour le back-office */
@@ -51,7 +50,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/dashboard/cree_un_evenements',[EvenementsController::class,"create"])->name("nouvelEvenement");
     Route::get('/dashboard/cree_un_article',[ArticlesController::class,"create"])->name("nouvelArticle");
 
-    Route::get('/dashboard/ajouter_une_seasonal',[SeasonalsController::class,"create"])->name("newSeasonal"); 
+    Route::get('/dashboard/ajouter_une_seasonal',[SeasonalsController::class,"create"])->name("newSeasonal");
+    Route::get('/dashboard/ajouter_un_anime_HorsSeasonal/',[AnimesController::class,"create"])->name("nouvelAnime_HS"); 
 });
 
 require __DIR__.'/auth.php';

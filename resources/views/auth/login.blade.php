@@ -3,7 +3,7 @@
 @section('content')
     <section class="container vh-100 d-flex flex-column justify-content-center align-items-center">
         <h1 class="mb-5">logo</h1>
-        <form method="POST" action="{{ route('login') }}" class="col-6 col-md-4">
+        <form method="POST" action="{{ route('login') }}" class="col-6 col-lg-4">
             @csrf
 
             <!-- Email Address -->
