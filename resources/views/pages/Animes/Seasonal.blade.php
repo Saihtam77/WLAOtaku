@@ -3,10 +3,10 @@
 @section('content')
 
     {{-- ajouter un anime --}}
-    @if (Auth::user())
+    @if (Auth::user() && Auth::user()->role === 'admin')
 
         {{-- Btn --}}
-        <section class="container d-flex justify-content-center mt-5">
+        <section class="container d-flex justify-content-center pt-5">
             <a href="#Ajouter_anime" class="btn btn-primary col-6" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="Ajouter_anime">Ajouter un anime</a>       
         </section>
 
@@ -18,11 +18,11 @@
     
     
     {{-- Display --}}
-    <section class="container d-flex flex-column mt-5">
+    <section class="container d-flex flex-column pt-5">
         <h1 class="d-flex justify-content-center bg-secondary">{{$seasonal->seasons}}</h1>
 
         <div class="d-flex row">
-            @foreach ($animes as $anime)
+            @foreach ($seasonal->animes as $anime)
             <div class="d-flex flex-column col-4 col-md-3 ">
                 <a class="text-decoration-none link-light" href="/les_animes/{{$anime->id}}">
                     <div class="d-flex justify-content-center"><img src="/storage/Animes/photos/{{$anime->images}}" class="w-100" style="height:25vh" alt=""></div>

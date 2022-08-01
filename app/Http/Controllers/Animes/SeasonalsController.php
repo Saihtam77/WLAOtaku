@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Animes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Animes\animes;
+use App\Models\Animes\categories;
 use App\Models\Animes\seasonals;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class SeasonalsController extends Controller
     public function index()
     {
         $seasonals=seasonals::OrderBy("created_at","desc")->get();
-        $animes=animes::OrderBy("created_at","desc")->get();
+        $animes=animes::OrderBy("created_at","desc")->limit(3)->get();
         
         return view("pages.Animes.lesSeasonals",[
             "seasonals"=>$seasonals,
@@ -73,10 +74,10 @@ class SeasonalsController extends Controller
     public function show($id)
     {
         $seasonal=seasonals::find($id);
-        $animes=animes::OrderBy("created_at","desc")->where("seasonals_id",'=',$id)->get();
+        $categories=categories::OrderBy("nom","desc")->get();
         return view("pages.Animes.Seasonal",[
+            "categories"=>$categories,
             "seasonal"=>$seasonal,
-            "animes"=>$animes
         ]);
     }
 

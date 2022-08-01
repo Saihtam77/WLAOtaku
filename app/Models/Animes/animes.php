@@ -18,6 +18,6 @@ class animes extends Model
     }
 
     public function categories(){
-        return $this->hasMany(categories::class);
+        return $this->belongsToMany(categories::class);
     }
 }

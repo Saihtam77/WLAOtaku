@@ -19,13 +19,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->string("nom");
-            
-            /* relation avec le tableau anime */
-           
-            $table->foreignIdFor(animes::class)
-                ->references("id")
-                ->on("animes")
-                ->onDelete('cascade');
         });
     }
 

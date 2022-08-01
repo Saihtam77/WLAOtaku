@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\Animes\seasonals;
+use App\Models\Animes\animes;
+use App\Models\Animes\categories;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,23 +15,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('animes', function (Blueprint $table) {
-            
+        Schema::create('animes_categories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            
-            $table->string("nom");
-            $table->string("auteur");
-            $table->text("synopsis");
-            $table->string("date_diffusion");
-            $table->string("images");
 
-            $table->foreignIdFor(seasonals::class)
-                ->nullable()
+            $table->foreignIdFor(animes::class)
                 ->references("id")
-                ->on("seasonals")
+                ->on("animes")
+                ->onDelete('cascade');
+
+            $table->foreignIdFor(categories::class)
+                ->references("id")
+                ->on("categories")
                 ->onDelete('cascade');
         });
+
     }
 
     /**
@@ -40,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('animes');
+        //
     }
 };

@@ -1,13 +1,3 @@
-/* css tool */
-.rotated_y {
-  transform: rotateY(180deg);
-}
-.x_scroll {
-  overflow-x: auto;
-}
-.shadow_box {
-  box-shadow: -12px 12px 2px 2px rgba(0, 0, 0, 0.5);
-}
 /* Evenement carousel */
 .carousel_img {
   width: 100%;
@@ -26,12 +16,12 @@
 .seasonalCarousel_first_slide {
   width: 100%;
   height: 50vh;
-  background-color: antiquewhite;
+  background-color: #ff3f3f;
 }
 .seasonalCarousel_img {
   width: 100%;
   height: 50vh;
-  background-color: antiquewhite;
+  background-color: #ff3f3f;
   position: relative;
   background-position: center;
   background-size: cover;
@@ -44,7 +34,7 @@
 }
 /* Card style */
 .card_box {
-  box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 12px 2px 2px rgba(0, 0, 0, 0.5);
 }
 .card_box .card_img {
   height: 25vh;

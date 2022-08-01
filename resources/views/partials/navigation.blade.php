@@ -1,68 +1,99 @@
 @guest
-    <nav class="navbar navbar-expand-lg navbar-dark container-fluid" style="background-color: #000814">           
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('accueil') }}">Logo</a>
+    <nav class="d-flex flex-column" style="overflow: auto">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <h1 class="p-5 mb-5 text-center">Menu</h1>
+
+        <div class="d-flex flex-column align-items-center mb-5 p-3">
+            <a class="text-decoration-none link-light" href="{{ route('accueil') }}">
+                <h3 class="text-center">Accueil</h3>
+            </a>
+            <hr class="w-75 bg-light">
+            <a class="text-decoration-none link-light" href="{{ route('LesAnimes') }}">
+                <h3 class="text-center">Liste des animes</h3>
+            </a>
+            <hr class="w-75 bg-light">
             
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav container-fluid d-flex flex-column flex-lg-row justify-content-lg-between">
-
-                    <div class="d-flex flex-column flex-lg-row">
-                        <a class="nav-link" href="{{route("LesAnimes")}}">Liste des animes</a>
-                        <a class="nav-link" href="{{route("LesArticles")}}">Les articles</a>
-                        <a class="nav-link" href="{{route("LesEvenements")}}">Les evenements</a>
-                        <a class="nav-link" href="{{route("LesSeasonals")}}">Les Seasonals</a>
-                    </div>
-
-                    <div class="d-flex flex-column flex-lg-row">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
-                        <a class="nav-link" href="{{ route('register') }}">register</a>
-                    </div>
-
-                </div>
-            </div>
+            <a class="text-decoration-none link-light" href="{{ route('LesArticles') }}">
+                <h3 class="text-center">Les articles</h3>
+            </a>
+            <hr class="w-75 bg-light">
+            <a class="text-decoration-none link-light" href="{{ route('LesEvenements') }}">
+                <h3 class="text-center">Les evenements</h3>
+            </a>
+            <hr class="w-75 bg-light">
+            <a class="text-decoration-none link-light" href="{{ route('LesSeasonals') }}">
+                <h3 class="text-center">Les Seasonals</h3>
+            </a>
         </div>
+
+        <div class="d-flex flex-column align-items-center mt-5 p-3">
+            <a class="text-decoration-none link-light" href="{{ route('login') }}">
+                <h3 class="text-center">Login</h3>
+            </a>
+            <hr class="w-75 bg-light">
+            <a class="text-decoration-none link-light" href="{{ route('register') }}">
+                <h3 class="text-center">Register</h3>
+            </a>
+        </div>
+
     </nav>
 @endguest
 
+
 @auth
-    <nav class="navbar navbar-expand-lg navbar-dark container-fluid" style="background-color: #000814">      
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('accueil') }}">Logo</a>
+    <nav class="d-flex flex-column">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav container-fluid d-flex flex-column flex-lg-row justify-content-lg-between">
+        <h1 class="p-5 mb-5 text-center">Menu</h1>
 
-                    <div class="d-flex flex-column flex-lg-row">
-                        <a class="nav-link" href="{{route("LesAnimes")}}">Liste des animes</a>
-                        <a class="nav-link" href="{{route("LesArticles")}}">Les articles</a>
-                        <a class="nav-link" href="{{route("LesEvenements")}}">Les evenements</a>
-                        <a class="nav-link" href="{{route("LesSeasonals")}}">Les Seasonals</a>
-                    </div>
-
-                    <div class="d-flex flex-column flex-lg-row">
-                        <a class="nav-link" href="#">Profile</a>
-                        <a class="nav-link" href="{{route("dashboard")}}">Dashboard</a>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <a href="route('logout')" onclick="event.preventDefault();this.closest('form').submit();" class="nav-link">
-                                Log out
-                            </a>
-                        </form>
-                        
-                    </div>
-
-                </div>
-            </div>
+        <div class="d-flex flex-column align-items-center mb-5 p-3">
+            <a class="text-decoration-none link-light" href="{{ route('accueil') }}">
+                <h3 class="text-center">Accueil</h3>
+            </a>
+            <hr class="w-75 bg-light">
+            <a class="text-decoration-none link-light" href="{{ route('LesAnimes') }}">
+                <h3 class="text-center">Liste des animes</h3>
+            </a>
+            <hr class="w-75 bg-light">
+            <a class="text-decoration-none link-light" href="{{ route('LesArticles') }}">
+                <h3 class="text-center">Les articles</h3>
+            </a>
+            <hr class="w-75 bg-light">
+            <a class="text-decoration-none link-light" href="{{ route('LesEvenements') }}">
+                <h3 class="text-center">Les evenements</h3>
+            </a>
+            <hr class="w-75 bg-light">
+            <a class="text-decoration-none link-light" href="{{ route('LesSeasonals') }}">
+                <h3 class="text-center">Les Seasonals</h3>
+            </a>
         </div>
-    </nav> 
+
+        <div class="d-flex flex-column align-items-center mt-5 p-3">
+
+            <a class="text-decoration-none link-light" href="{{route("profil")}}">
+                <h3 class="text-center">Profile</h3>
+            </a>
+            <hr class="w-75 bg-light">
+
+            @if (Auth::user()->role === 'admin')
+                <a class="text-decoration-none link-light" href="{{ route('dashboard') }}">
+                    <h3 class="text-center">Dashboard</h3>
+                </a>
+                <hr class="w-75 bg-light">
+            @endif
+
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a href="route('logout')" onclick="event.preventDefault();this.closest('form').submit();"
+                    class="text-decoration-none link-light">
+                    <h3 class="text-center">Log out</h3>
+                </a>
+            </form>
+            
+        </div>
+
+
+
+
+    </nav>
+
 @endauth

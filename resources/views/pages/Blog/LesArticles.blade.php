@@ -1,22 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="d-flex flex-column">
+    <section class="d-flex flex-column pt-5">
+
+        <div class="d-flex justify-content-center mb-5">
+            <div class="shadow_box col-6 border p-3 text-center">
+                <h1>Articles</h1>
+            </div>
+        </div>
 
         @foreach ($articles as $article)
-            
-            <div class="d-flex border mb-3 mt-5">
-                <div class="col-5 col-md-4"><img src="/storage/Articles/photos/{{ $article->images }}"
-                        class="w-100" style="height:25vh" alt=""></div>
-                <a href="/les_articles/{{ $article->id }}"
-                    class="col-7 col-md-8 p-5 d-flex flex-column align-items-center hvr-fade text-decoration-none link-dark">
-
-                    <h3><b>{{ $article->titre}}</b></h3>
-                    <h4>{{ $article->presentation }}</h4>
-
-                </a>
-            </div>
-            
+            <a href="/les_articles/{{$article->id}}" class="d-flex mb-3 border link-dark text-decoration-none shadow_box hvr-shrink">
+                
+                <div class="responsive_bg_img" style="background-image: url(/storage/Articles/photos/{{$article->images}});height:25vh"></div>
+                
+                <div class="d-flex flex-column align-items-center justify-content-center col-lg-9 col-8 hvr-sweep-to-right">
+                    <div><h3 class="text-center">{{$article->titre}}</h3></div>
+                    <hr class="w-50 d-none d-lg-block">
+                    <div class="d-none d-lg-block p-5"><h6>{{$article->presentation}}</h6></div>
+                </div>
+                
+            </a>    
         @endforeach
 
     </section>

@@ -15,6 +15,15 @@
             {!! Form::date("date_diffusion","", ["class"=>"form-control"]) !!}
         </div>
 
+        <div class="d-flex flex-column form-group col-6">
+            {!! Form::label('categories', 'Categories') !!}
+            <select name="categories[]" id="Categories" multiple="multiple" class="form-control">
+                @foreach ($categories as $categorie)
+                    <option value="{{ $categorie->id }}">{{ $categorie->nom }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="d-flex flex-column form-group">
             {!! Form::label("synopsis","Synopsis") !!}
             {!! Form::textarea("synopsis","", ["class"=>"form-control","placeholder"=>"De quoi voulez vous parler ?"]) !!}

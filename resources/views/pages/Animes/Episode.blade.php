@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @if (Auth::user())
+        @if (Auth::user() && Auth::user()->role === 'admin')
         <section class="mb-5">
             {{-- btn --}}
             <div class="container d-flex justify-content-between mt-5">
@@ -15,7 +15,7 @@
         </section>
     @endif
 
-    <section class="container d-flex flex-column mt-5">
+    <section class="container d-flex flex-column pt-5">
         <div class="d-flex border p-3 justify-content-center align-items-center">
             <iframe class="w-100" style="min-height: 70vh" src="/storage/Animes/Episodes/video/{{ $episode->video }}" frameborder="0"></iframe>
         </div>
@@ -29,9 +29,9 @@
         <h2 class="text-center">Les autres episodes:</h2>
 
         <div class="d-flex row justify-content-md-center">
-            @foreach ($episodes as $autres_episodes)
+            @foreach ($anime->episodes as $autres_episodes)
                 <div class=""><img src="" alt=""></div>
-                <h5>{{ $autre_episode }}</h5>
+                <h5>{{ $autre_episodes->nom }}</h5>
             @endforeach
         </div>
     </section>

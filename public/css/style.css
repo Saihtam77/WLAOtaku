@@ -1,0 +1,35 @@
+/* css tool */
+.responsive_bg_img {
+  width: 100%;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+}
+.rotated_y {
+  transform: rotateY(180deg);
+}
+.x_scroll {
+  overflow-x: auto;
+}
+.shadow_box {
+  box-shadow: 0px 12px 2px 2px rgba(0, 0, 0, 0.5) !important;
+}
+.circle {
+  clip-path: circle();
+}
+header {
+  z-index: 5;
+  left: -50%;
+  transition: 1s;
+}
+header.active {
+  left: 0;
+}
+#Menu_toggle_btn {
+  z-index: 5;
+}
+#Menu_toggle_btn span {
+  min-height: 7px;
+  min-width: 50px;
+  margin-bottom: 5px;
+}

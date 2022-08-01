@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Animes;
 
 use App\Http\Controllers\Controller;
+use App\Models\Animes\animes;
 use App\Models\Animes\episodes;
 use Illuminate\Http\Request;
 
@@ -80,11 +81,11 @@ class EpisodesController extends Controller
     public function show($id)
     {
         $episode=episodes::find($id);//les infos relatives a l'episode
-        $episodes=episodes::OrderBy("created_at")->where("saison_id","=",$id);//Les infos realtives a tout les episodes de la saison
+        $anime=animes::OrderBy("created_at")->where("id","=","animes_id");
         
         return view("pages.Animes.Episode",[
             "episode"=>$episode,
-            "episodes"=>$episodes,
+            "anime"=>$anime,
         ]);
     }
 

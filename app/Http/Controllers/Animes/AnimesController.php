@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Animes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Animes\animes;
+use App\Models\Animes\categories;
 use App\Models\Animes\episodes;
 use Illuminate\Http\Request;
 
@@ -20,14 +21,24 @@ class AnimesController extends Controller
         return view("pages.Animes.LesAnimes")->with("animes", $animes);
     }
 
+    public function search()
+    {
+        $search=request()->input('search');
+
+        $animes=animes::where("nom","like","%$search%");
+
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view("pages.Creation.nouveauxAnimes_HorsSeasonal");
+    {   
+        $categories=categories::OrderBy("nom","desc")->get();
+        return view("pages.Creation.nouveauxAnimes_HorsSeasonal")->with("categories",$categories);
     }
 
     /**
@@ -44,11 +55,13 @@ class AnimesController extends Controller
             "nom" => 'required',
             "date_diffusion" => 'required',
             "auteur" => 'required',
+            "categories"=>'required', 
+            
 
             "synopsis" => 'required',
 
             /* image required */
-            "images"=>'required|image|max:1999'
+            "images"=>'required|image|mimes:jpg,png,jpeg|max:1999'
         ]);
 
         /*Créee un identifiant unique pour l'images et la stocke*/
@@ -80,7 +93,9 @@ class AnimesController extends Controller
         $animes->images = $fileNameToStore;
 
         $animes->save();
-        return redirect()->route("LesSeasonals")->with('success', 'Nouvel anime ajouter');
+
+        $animes->categories()->sync($request->input('categories')); 
+        return redirect()->route("LesAnimes")->with('success', 'Nouvel anime ajouter');
     }
 
     /**
@@ -92,10 +107,13 @@ class AnimesController extends Controller
     public function show($id)
     {
         $anime = animes::find($id);
-        $episodes=episodes::OrderBy("nom","desc")->Where("animes_id","=",$id)->get();
+        $categories= animes::find($id)->categories()->OrderBy("nom", "desc")->get(); 
+       
+
         return view("pages.Animes.Anime",[
+                "categories"=>$categories,
                 "anime"=>$anime,
-                "episodes"=>$episodes
+                
         ]);
     }
 
@@ -126,6 +144,7 @@ class AnimesController extends Controller
             "nom" => 'required',
             "date_diffusion" => 'required',
             "auteur" => 'required',
+            "categories"=>"required",
            
 
             "synopsis" => 'required',
@@ -154,6 +173,7 @@ class AnimesController extends Controller
         $animes->nom = $request->input('nom');
         $animes->date_diffusion = $request->input('date_diffusion');
         $animes->auteur = $request->input('auteur');
+       
 
         $animes->synopsis = $request->input('synopsis');
 
@@ -161,6 +181,7 @@ class AnimesController extends Controller
         $animes->images = $fileNameToStore;
 
         $animes->save();
+        $animes->categories()->sync($request->input('categories'));
         return redirect()->route("LesAnimes")->with('success', 'Info mise a jours');
     }
 

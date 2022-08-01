@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="container d-flex flex-column">
-        {!! Form::open(["action"=>["Animes\SeasonalsController@update",$seasonals->id],"method"=>"PUT","enctype"=>"multipart/form-data","class"=>"d-flex flex-column"]) !!}
+        {!! Form::open(["action"=>["Animes\SeasonalsController@update",$seasonals->id],"methodp"=>"PUT","enctype"=>"multipart/form-data","class"=>"d-flex flex-column"]) !!}
             
             <div class="d-flex flex-column form-group">
                 {!! Form::label("seasons","Seasonal") !!}

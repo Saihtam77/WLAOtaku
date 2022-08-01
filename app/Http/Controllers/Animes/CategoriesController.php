@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Animes;
 
 use App\Http\Controllers\Controller;
+use App\Models\Animes\categories;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -24,7 +25,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view("pages.Creation.nouvellesCategories");
     }
 
     /**
@@ -35,7 +36,19 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*Verification du remplissage des champs requis*/
+        $this->validate($request,[
+            
+            "nom"=>'required',
+        ]);
+
+        /* Exportation des nouvelles donnée dans la base de donnée */
+        $categories=new categories;
+
+        $categories->nom=$request->input('nom');
+
+        $categories->save();
+        return redirect()->route("dashboard")->with('success', 'Nouvelles categories ajouter');
     }
 
     /**
@@ -57,7 +70,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories=categories::find($id);
+        return view("pages.Edit.editCategories")->with("categories",$categories);
     }
 
     /**
@@ -69,7 +83,19 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /*Verification du remplissage des champs requis*/
+        $this->validate($request,[
+            
+            "nom"=>'required',
+        ]);
+
+        /* Exportation des nouvelles donnée dans la base de donnée */
+        $categorie= categories::find($id);
+        
+        $categorie->nom=$request->input('nom');
+
+        $categorie->save();
+        return redirect()->route("dashboard")->with('success', 'Catégories mise à jour');
     }
 
     /**
@@ -80,6 +106,8 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categorie=categories::find($id);
+        $categorie->delete();
+        return redirect()->route("LesSeasonals")->with('success', 'Catégories supprimée');
     }
 }

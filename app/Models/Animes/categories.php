@@ -10,6 +10,6 @@ class categories extends Model
     use HasFactory;
 
     public function animes(){
-        return $this->belongsTo(animes::class);
+        return $this->belongsToMany(animes::class);
     }
 }

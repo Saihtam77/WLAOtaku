@@ -4,7 +4,6 @@ use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\Animes\AnimesController;
 use App\Http\Controllers\Animes\CategoriesController;
 use App\Http\Controllers\Animes\EpisodesController;
-use App\Http\Controllers\Animes\SaisonsController;
 use App\Http\Controllers\Animes\SeasonalsController;
 use App\Http\Controllers\Blog\ArticlesController;
 use App\Http\Controllers\Blog\EvenementsController;
@@ -31,6 +30,8 @@ Route::get('/Les_Articles',[ArticlesController::class,'index'])->name("LesArticl
 Route::get('/Les_Seasonals',[SeasonalsController::class,'index'])->name("LesSeasonals");
 Route::get('/Les_Animes',[AnimesController::class,'index'])->name("LesAnimes");
 
+//Route pour la barre de recherche
+Route::get("/Les_Animes/search",[AnimesController::class,'search'])->name("Anime_search");
 
 /* mise en place de ressource */
 Route::resource("les_evenements",EvenementsController::class);
@@ -42,7 +43,7 @@ Route::resource("les_episodes",EpisodesController::class);
 Route::resource("les_categories",CategoriesController::class);
 
 /* route pour le back-office */
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth',"role:admin"])->group(function(){
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
@@ -51,7 +52,14 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/dashboard/cree_un_article',[ArticlesController::class,"create"])->name("nouvelArticle");
 
     Route::get('/dashboard/ajouter_une_seasonal',[SeasonalsController::class,"create"])->name("newSeasonal");
-    Route::get('/dashboard/ajouter_un_anime_HorsSeasonal/',[AnimesController::class,"create"])->name("nouvelAnime_HS"); 
+    Route::get('/dashboard/ajouter_un_anime_HorsSeasonal/',[AnimesController::class,"create"])->name("nouvelAnime_HS");
+    Route::get('/dashboard/ajouter_une_categorie/',[CategoriesController::class,"create"])->name("nouvelCategorie");  
+});
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/profil', function () {
+        return view('pages/Profil');
+    })->name('profil');
 });
 
 require __DIR__.'/auth.php';

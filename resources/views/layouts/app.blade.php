@@ -18,17 +18,20 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/script.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased postion-relative min-vh-100" style="overflow-x: hidden">
 
         <!-- Page Heading -->
-        <header class="position-sticky top-0 container-fluid p-0" style="z-index:5">
+        <header id="Menu" class="bg-dark text-light position-fixed vh-100 col-6 col-lg-2">
             @include('partials.navigation')
         </header>
-
+       
+        
         <!-- Page Content -->
         <main class="container-fluid position-relative">
             @include('partials.messages')
+            @include('partials.menu_toggle_btn')
             @yield('content')
         </main>
         

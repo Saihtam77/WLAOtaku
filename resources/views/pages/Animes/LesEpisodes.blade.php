@@ -4,7 +4,7 @@
 
     {{-- btn --}}
     <section class="container d-flex justify-content-between mt-5">
-        @if (Auth::user())
+        @if (Auth::user() && Auth::user()->role === 'admin')
             <a href="{{ $saison->id }}/edit" class="btn btn-primary ">Edit</a>
             <a href="" class="btn btn-info">Ajouter un episode</a>
             {!! Form::open(['action' => ['Animes\SaisonsController@destroy', $saison->id], 'method' => 'DELETE']) !!}
@@ -12,7 +12,7 @@
             {!! Form::close() !!}
         @endif
     </section>
-    @if (Auth::user())
+    @if (Auth::user() && Auth::user()->role === 'admin')
         @include('pages.Creation.nouveauxEpisodes')
     @endif
     <section class=" container-md d-flex flex-column flex-md-row mt-5">
