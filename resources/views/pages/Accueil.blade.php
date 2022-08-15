@@ -106,7 +106,7 @@
                         class="card_box d-flex flex-column col-12 col-lg-3  link-dark text-decoration-none hvr-shrink me-5">
                         <div class="card_img" style="background-image: url(/storage/Animes/photos/{{ $anime->images }})">
                         </div>
-                        <h4 class="border"><b>{{ $anime->nom }} {{ $episode->nom }}</b></h4>
+                        <h4 class="border"><b>{{ $anime->nom }} épisode {{ $episode->nom }}</b></h4>
                     </a>
                 @endforeach
             @endforeach
@@ -194,7 +194,7 @@
         </div>
 
         @foreach ($articles as $article)
-            <a href="/les_articles/{{ $article->id }}" class="d-flex mb-5 thumb_box text-decoration-none text-dark shadow_box">
+            <a href="/les_articles/{{ $article->id }}" class="d-flex mb-5 thumb_box text-decoration-none text-dark shadow_box hvr-shrink">
                 <div class="col-4 col-lg-3 thumb_img"
                     style="background-image: url(/storage/Articles/photos/{{ $article->images }})"></div>
                 <div

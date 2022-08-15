@@ -18,7 +18,7 @@
 
             <div class="d-flex flex-column col-12 col-lg-10 justify-content-between">
                 <h1 class="border shadow_box mb-5 position-relative p-2" style="top: 25%">{{$evenement->nom}}</h1>
-                <h3 class="pt-3">Mise en ligne le: <br> {{$evenement->created_at}}</h3>
+                <h3 class="pt-3"><b>Mise en ligne le:</b> <br> {{$evenement->created_at}}</h3>
             </div>
 
             {{-- kana img --}}
@@ -32,7 +32,7 @@
         <hr class="w-100 p-0 m-0 mb-lg-5 d-none d-lg-block">
 
         {{-- date --}}
-        <div class="col-6">
+        <div class="col-lg-6 col-12">
             <h4><b>Du:</b> {{$evenement->date_debut}} <b>au</b> {{$evenement->date_fin}}</h4>
         </div>
 

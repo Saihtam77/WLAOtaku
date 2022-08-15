@@ -14,10 +14,13 @@
     
                 <div class="d-flex justify-content-between">
                     <div>
-                        <a class="text-decoration-none link-dark" href="/les_seasonals/{{$seasonal->id}}">
-                            <h3><b>{{$seasonal->seasons}}</b></h3>
+                        <a class="d-flex text-decoration-none link-dark" href="/les_seasonals/{{$seasonal->id}}">
+                            <h3 class="me-3"><b>{{$seasonal->seasons}}</b></h3>
                         </a>
+                        
                     </div>
+
+                    
                     {{-- admin btns --}}
                     <div class="d-flex align-items-center">
                         <div class="d-flex">
@@ -34,13 +37,14 @@
                 </div>
                 {{-- separatioon --}}
                 <hr class="w-100 m-0 p-0 mb-5">
+
                 {{-- contents --}}
-                <div class="row">
+                <div id="animes_seasonal-{{$seasonal->id}}" class="row collpase">
                     @foreach ($seasonal->animes as $anime)
-                    <a href="/les_animes/{{$anime->id}}" class="d-flex flex-column col-6 col-lg-3 mb-3 hvr-shrink text-decoration-none link-dark">
-                        <div class="d-flex justify-content-center align-items-center responsive_bg_img" style="background-image: url(/storage/Animes/Photos/{{$anime->images}}); height:20vh"></div>
-                        <div class="border shadow_box"><h5 class="text-center">{{$anime->nom}}</h5></div>
-                    </a>
+                        <a href="/les_animes/{{$anime->id}}" class="d-flex flex-column col-6 col-lg-3 mb-3 hvr-shrink text-decoration-none link-dark">
+                            <div class="d-flex justify-content-center align-items-center responsive_bg_img" style="background-image: url(/storage/Animes/Photos/{{$anime->images}}); height:20vh"></div>
+                            <div class="border shadow_box"><h5 class="text-center">{{$anime->nom}}</h5></div>
+                        </a>
                     @endforeach
                 </div>
             </div>

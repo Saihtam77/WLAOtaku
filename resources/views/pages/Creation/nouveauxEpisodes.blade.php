@@ -3,8 +3,8 @@
     {!! Form::open(["action"=>"Animes\EpisodesController@store","method"=>"post","enctype"=>"multipart/form-data","class"=>"d-flex flex-column"]) !!}
         
         <div class="d-flex flex-column form-group">
-            {!! Form::label("nom","Nom") !!}
-            {!! Form::text("nom","", ["class"=>"form-control","placeholder"=>"Nom de l'episode"]) !!}
+            {!! Form::label("nom","Numero de l'épisode") !!}
+            {!! Form::number("nom","", ["class"=>"form-control"]) !!}
         </div>
 
         <div class="d-flex flex-column mt-3">

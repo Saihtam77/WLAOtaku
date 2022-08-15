@@ -1,11 +1,13 @@
 @extends('layouts.app')
-
+@section('style')
+<link rel="stylesheet" href="{{ asset('css/episode_style.css') }}">
+@endsection
 @section('content')
 
-        @if (Auth::user() && Auth::user()->role === 'admin')
-        <section class="mb-5">
+    @if (Auth::user() && Auth::user()->role === 'admin')
+        <section class="mb-5 pt-5">
             {{-- btn --}}
-            <div class="container d-flex justify-content-between mt-5">
+            <div class="container d-flex justify-content-between pt-5">
                 <div><a href="{{ $episode->id }}/edit" class="btn btn-primary ">Edit</a></div>
 
                 {!! Form::open(['action' => ['Animes\EpisodesController@destroy', $episode->id], 'method' => 'DELETE']) !!}
@@ -15,23 +17,31 @@
         </section>
     @endif
 
-    <section class="container d-flex flex-column pt-5">
-        <div class="d-flex border p-3 justify-content-center align-items-center">
-            <iframe class="w-100" style="min-height: 70vh" src="/storage/Animes/Episodes/video/{{ $episode->video }}" frameborder="0"></iframe>
+    <section class="container d-flex flex-column pt-5 justify-content-center mb-5">
+
+        <div class="d-flex justify-content-center align-items-center col-12">
+            <iframe src="/storage/Animes/Episodes/video/{{ $episode->video }}" frameborder="0"></iframe>
         </div>
 
-        <h2 class="text-center mt-3">{{ $episode->nom }}</h2>
-
+        <h2 class="text-center mt-3">{{ $anime->nom }} épisode{{ $episode->nom }}</h2>
     </section>
 
-    <section class="d-flex flex-column mt-5">
+    <section class="d-flex flex-column mb-3">
 
-        <h2 class="text-center">Les autres episodes:</h2>
+        <div class="d-flex justify-content-center mb-5">
+            <div class="shadow_box col-6 border p-3 text-center">
+                <h1 class="">Les autres épisodes</h1>
+            </div>
+        </div>
 
-        <div class="d-flex row justify-content-md-center">
-            @foreach ($anime->episodes as $autres_episodes)
-                <div class=""><img src="" alt=""></div>
-                <h5>{{ $autre_episodes->nom }}</h5>
+        <div class="d-flex x_scroll mb-3 p-2">
+            @foreach ($episodes as $autre_episode)
+            
+                <a href="/les_episodes/{{$autre_episode->id}}" class="d-flex flex-column col-12 col-lg-3 me-3 link-dark text-decoration-none hvr-shrink">
+                    <div class="responsive_bg_img" style="background-image: url(/storage/Animes/photos/{{ $anime->images }});height:25vh"></div>
+                    <div class="border shadow_box"><h5><b>{{ $anime->nom }} épisode {{$autre_episode->nom}}</b></h5></div>
+                </a>
+                
             @endforeach
         </div>
     </section>

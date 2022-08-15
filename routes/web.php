@@ -55,7 +55,7 @@ Route::middleware(['auth',"role:admin"])->group(function(){
     Route::get('/dashboard/ajouter_un_anime_HorsSeasonal/',[AnimesController::class,"create"])->name("nouvelAnime_HS");
     Route::get('/dashboard/ajouter_une_categorie/',[CategoriesController::class,"create"])->name("nouvelCategorie");  
 });
-
+    
 Route::middleware(['auth'])->group(function(){
     Route::get('/profil', function () {
         return view('pages/Profil');

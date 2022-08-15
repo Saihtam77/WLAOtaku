@@ -81,10 +81,13 @@ class EpisodesController extends Controller
     public function show($id)
     {
         $episode=episodes::find($id);//les infos relatives a l'episode
-        $anime=animes::OrderBy("created_at")->where("id","=","animes_id");
-        
+        $episodes=episodes::OrderBy("created_at")->where("animes_id","=",$episode->animes_id)->where("id","<>",$id  )->get();
+
+        $anime=animes::find($episode->animes_id);
+
         return view("pages.Animes.Episode",[
             "episode"=>$episode,
+            "episodes"=>$episodes,
             "anime"=>$anime,
         ]);
     }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Animes;
 use App\Http\Controllers\Controller;
 use App\Models\Animes\animes;
 use App\Models\Animes\categories;
-use App\Models\Animes\episodes;
 use Illuminate\Http\Request;
 
 class AnimesController extends Controller
@@ -25,7 +24,9 @@ class AnimesController extends Controller
     {
         $search=request()->input('search');
 
-        $animes=animes::where("nom","like","%$search%");
+        $animes=animes::where("nom","like","%$search%")->get(   );
+
+        return view("search_result")->with("animes",$animes);
 
         
     }
@@ -126,7 +127,8 @@ class AnimesController extends Controller
     public function edit($id)
     {
         $anime = animes::find($id);
-        return view("pages.Edit.editAnimes")->with("anime", $anime);
+        $categories=categories::OrderBy("nom","desc")->get();
+        return view("pages.Edit.editAnimes",["anime"=>$anime,"categories"=>$categories]);
     }
 
     /**

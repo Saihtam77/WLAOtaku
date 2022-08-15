@@ -4,6 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        
+        <meta name="keywords" content="Animes, Streaming, Otaku, Weeb, Vostfr">
+        <meta name="description" content="Site de streaming Anime Vostfr">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -23,7 +26,7 @@
     <body class="font-sans antialiased postion-relative min-vh-100" style="overflow-x: hidden">
 
         <!-- Page Heading -->
-        <header id="Menu" class="bg-dark text-light position-fixed vh-100 col-6 col-lg-2">
+        <header id="Menu" class="text-light bg-dark position-fixed vh-100 col-6 col-lg-2">
             @include('partials.navigation')
         </header>
        
