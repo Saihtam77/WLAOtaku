@@ -94,14 +94,14 @@
 
         <div class="d-flex flex-column align-items-center mt-5 p-3">
 
-            <a class=" d-flex justify-content-center text-decoration-none hvr-grow link-light" href="{{ route('LesSeasonals') }}">
+            <a class=" d-flex justify-content-center text-decoration-none hvr-grow link-light" href="{{ route('profil') }}">
                 <img src="/storage/deco/user.png" class="img-fluids col-2" alt="icone saisons">
                 <h3 class="d-flex align-items-center text-center m-0">Profile</h3>
             </a>
             <hr class="w-75 bg-light">
 
             @if (Auth::user()->role === 'admin')
-            <a class=" d-flex justify-content-center text-decoration-none hvr-grow link-light" href="{{ route('Dashboard') }}">
+            <a class=" d-flex justify-content-center text-decoration-none hvr-grow link-light" href="{{ route('dashboard') }}">
                 <img src="/storage/deco/user.png" class="img-fluids col-2" alt="icone saisons">
                 <h3 class="d-flex align-items-center text-center m-0">Dasboard</h3>
             </a>

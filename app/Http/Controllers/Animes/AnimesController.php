@@ -24,7 +24,7 @@ class AnimesController extends Controller
     {
         $search=request()->input('search');
 
-        $animes=animes::where("nom","like","%$search%")->get(   );
+        $animes=animes::where("nom","like","%$search%")->get();
 
         return view("search_result")->with("animes",$animes);
 
@@ -60,8 +60,8 @@ class AnimesController extends Controller
             
 
             "synopsis" => 'required',
-
-            /* image required */
+            
+            "images" => 'required',
             "images"=>'required|image|mimes:jpg,png,jpeg|max:1999'
         ]);
 

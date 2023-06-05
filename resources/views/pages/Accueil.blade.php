@@ -9,7 +9,7 @@
 @section('content')
     {{-- Title --}}
     <section class="container p-5">
-        <a href="{{route("accueil")}}" 
+        <a href="{{ route('accueil') }}"
             class="d-flex justify-content-center align-items-center w-100 shadow_box link-dark border text-decoration-none hvr-grow me-5">
             <h1 class="display-3 text-center"><b>WLAOtaku</b></h1>
         </a>
@@ -23,7 +23,8 @@
             <img src="/storage/deco/toru_wow.png" class="img-fluid rotated_y h-100" alt="">
         </div>
         {{-- carousel des evenements --}}
-        <div id="eventCarousel" class=" col-12 col-lg-6 border carousel carousel-dark slide shadow_box" data-bs-ride="carousel">
+        <div id="eventCarousel" class=" col-12 col-lg-6 border carousel carousel-dark slide shadow_box"
+            data-bs-ride="carousel">
 
 
             {{-- indicator --}}
@@ -194,7 +195,8 @@
         </div>
 
         @foreach ($articles as $article)
-            <a href="/les_articles/{{ $article->id }}" class="d-flex mb-5 thumb_box text-decoration-none text-dark shadow_box hvr-shrink">
+            <a href="/les_articles/{{ $article->id }}"
+                class="d-flex mb-5 thumb_box text-decoration-none text-dark shadow_box hvr-shrink">
                 <div class="col-4 col-lg-3 thumb_img"
                     style="background-image: url(/storage/Articles/photos/{{ $article->images }})"></div>
                 <div
@@ -207,5 +209,4 @@
             </a>
         @endforeach
     </section>
-    
 @endsection
